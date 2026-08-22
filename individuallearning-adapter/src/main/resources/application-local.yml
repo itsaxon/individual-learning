@@ -1,0 +1,41 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://8.156.64.154:3306/frame_parent?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+    username:
+    password:
+    hikari:
+      pool-name: IndividuallearningHikariPool
+      minimum-idle: 5
+      maximum-pool-size: 20
+      connection-timeout: 30000
+      idle-timeout: 600000
+      max-lifetime: 1800000
+
+  data:
+    redis:
+      host: 8.156.64.154
+      port: 6379
+      database: 0
+      timeout: 3000ms
+      lettuce:
+        pool:
+          max-active: 16
+          max-idle: 8
+          min-idle: 0
+      password: 123qwe!@#QWE
+  # 首次启动自动建表；后续可改回 never
+  sql:
+    init:
+      mode: always
+      schema-locations: classpath:db/schema.sql,classpath:db/auth-schema.sql,classpath:db/permission-schema.sql,classpath:db/operation-log-schema.sql,classpath:db/impostor-schema.sql
+
+# 开发环境开启 SQL 日志
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+logging:
+  level:
+    root: info
+    com.individuallearning: debug

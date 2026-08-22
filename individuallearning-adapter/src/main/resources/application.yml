@@ -1,0 +1,83 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+
+spring:
+  profiles:
+    active: dev
+  application:
+    name: frame
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+    default-property-inclusion: non_null
+
+# MyBatis Plus
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+  global-config:
+    banner: false
+    db-config:
+      id-type: input
+      logic-delete-field: deleted
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+
+# 接口文档
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    tags-sorter: alpha
+    operations-sorter: alpha
+  api-docs:
+    path: /v3/api-docs
+  group-configs:
+    - group: default
+      paths-to-match: /**
+      packages-to-scan: com.individuallearning.adapter.web.controller
+
+knife4j:
+  enable: true
+  setting:
+    language: zh_cn
+
+# JWT 认证配置
+frame:
+  jwt:
+    secret: ${JWT_SECRET:individual-learning-ddd-scaffold-jwt-secret-key-2026-must-be-at-least-32-chars}
+    access-ttl: PT30M
+    refresh-ttl: P7D
+  # 安全白名单：以下路径不经过 JWT 鉴权
+  security:
+    whitelist:
+      - /api/v1/auth/login
+      - /api/v1/auth/refresh
+      - /api/v1/sys/user/register
+      - /api/v1/sys/user/login
+      - /doc.html
+      - /swagger-ui/**
+      - /v3/api-docs/**
+      - /webjars/**
+      - /actuator/**
+  # 防重复提交默认配置
+  idempotent:
+    default-window: 5s
+  # API 版本前缀
+  api:
+    version-prefix: /api/v1
+  guessword:
+    token-secret: ${GUESSWORD_TOKEN_SECRET:guessword-aes-secret-key-2026-must-be-32-chars-long}
+
+# 猜词游戏词向量配置
+guessword:
+  vector:
+    # 是否启用腾讯词向量（下载文件后改为 true）
+    enabled: true
+    # 词向量文件路径，如 D:/data/Tencent_AILab_ChineseEmbedding.txt
+    path: /www/Tencent_AILab_ChineseEmbedding_Min.txt
+    # 最大加载词数（控制内存）
+    max-words: 5000000
+    # 向量维度
+    dimension: 200

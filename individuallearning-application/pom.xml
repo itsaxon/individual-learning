@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.individuallearning</groupId>
+        <artifactId>individual-learning</artifactId>
+        <version>1.0.0</version>
+    </parent>
+
+    <artifactId>individuallearning-application</artifactId>
+    <name>individuallearning-application</name>
+    <description>应用层：用例编排、事务控制、DTO 转换</description>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.individuallearning</groupId>
+            <artifactId>individuallearning-domain</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.individuallearning</groupId>
+            <artifactId>individuallearning-common</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
+        </dependency>
+        <!-- 测试 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+</project>
